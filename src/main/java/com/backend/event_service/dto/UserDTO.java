@@ -6,13 +6,16 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class UserDTO {
-    private String id;
+    private Long id;
+    private Long chatId;
     private String firstName;
     private String lastName;
-    private String image;
-    private String email;
+    private String login;
     private UserRole role;
     private AccountStatus accountStatus;
+    private LocalDateTime createTime;
 }
