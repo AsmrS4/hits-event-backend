@@ -19,12 +19,14 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public AccessToken login(SignInRequest signInRequest) {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(signInRequest.getLogin());
+        if(!userDetails.isEnabled()) {
+            throw  new RuntimeException("Account not confirmed or banned");
+        }
         if(userDetails.getUsername().isEmpty() || userDetails.getPassword().equals(signInRequest.getPassword())) {
             throw new RuntimeException("Login failed");
         }
         return jwtService.getAccessToken(userDetails);
     }
-
 
     //TODO: метод должен быть доступен только при обращении через бота. Подумать как это сделать
     @Override

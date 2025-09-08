@@ -17,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService{
     private final UserRepository userRepository;
+    //TODO:доступен только админу
     @Override
     public List<UserDTO> getRegistrationList() {
         return null;
@@ -31,12 +32,12 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     public User editProfile(UserEditDTO userEditDTO) {
         return null;
     }
-
+    //TODO:доступен только админу
     @Override
     public RequestResponse applyUserAccount() {
         return null;
     }
-
+    //TODO:доступен только админу
     @Override
     public RequestResponse rejectUserAccount() {
         return null;
@@ -56,7 +57,6 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     public UserDetailsService userDetailsService() {
         return this::getByLogin;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
