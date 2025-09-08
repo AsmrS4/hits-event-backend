@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByLogin(String username);
-    boolean existsByLogin(String username);
+    Optional<User> findById(Long id);
 
     @Query("SELECT u FROM User u WHERE u.accountStatus = 0")
     List<User> getUnverifiedAccounts();

@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
     List<UserDTO> getRegistrationList();
-    User getProfile();
-    User editProfile(UserEditDTO userEditDTO);
-    RequestResponse applyUserAccount();
-    RequestResponse rejectUserAccount();
+    UserDTO getProfile();
+    UserDTO editProfile(UserEditDTO userEditDTO);
+    RequestResponse confirmUserAccount(Long id);
+    RequestResponse rejectUserAccount(Long id);
     void save(User user);
     UserDetailsService userDetailsService();
 }
