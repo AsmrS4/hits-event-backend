@@ -6,13 +6,16 @@ import com.backend.event_service.dto.UserEditDTO;
 import com.backend.event_service.entities.User;
 import com.backend.event_service.repositories.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService{
     private final UserRepository userRepository;
     @Override
     public List<UserDTO> getRegistrationList() {
@@ -37,5 +40,22 @@ public class UserServiceImpl implements UserService{
     @Override
     public RequestResponse rejectUserAccount() {
         return null;
+    }
+
+    public User getByLogin(String login) {
+        return userRepository.findByLogin(login)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+    }
+
+    @Override
+    public UserDetailsService userDetailsService() {
+        return this::getByLogin;
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return getByLogin(username);
     }
 }
