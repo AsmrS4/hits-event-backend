@@ -8,6 +8,8 @@ import com.backend.event_service.entities.User;
 import com.backend.event_service.services.jwt.JwtService;
 import com.backend.event_service.services.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +17,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
     private final UserService userService;
+    private final BlackListService blackListService;
     private final JwtService jwtService;
+    private final Logger LOGGER;
     @Override
     public AccessToken login(SignInRequest signInRequest) {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(signInRequest.getLogin());
         if(!userDetails.isEnabled()) {
+            LOGGER.info("Account not confirmed or banned");
             throw  new RuntimeException("Account not confirmed or banned");
         }
-        if(userDetails.getUsername().isEmpty() || userDetails.getPassword().equals(signInRequest.getPassword())) {
+        if(userDetails.getUsername().isEmpty() || !userDetails.getPassword().equals(signInRequest.getPassword())) {
+            LOGGER.info("Login failed");
             throw new RuntimeException("Login failed");
         }
+        LOGGER.info("its Ok");
         return jwtService.getAccessToken(userDetails);
     }
 
@@ -52,6 +59,12 @@ public class AuthServiceImpl implements AuthService{
 
     @Override
     public RequestResponse logout() {
-        return null;
+        var token = SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
+        LOGGER.info(token);
+        if(blackListService.isTokenBlacklisted(token)) {
+            throw new RuntimeException("Unauthorized");
+        }
+        blackListService.save(token);
+        return new RequestResponse(true, 200, "Logout");
     }
 }
