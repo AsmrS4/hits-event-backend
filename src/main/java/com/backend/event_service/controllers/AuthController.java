@@ -28,7 +28,6 @@ public class AuthController {
     }
     @PostMapping("/logout")
     public ResponseEntity<RequestResponse> logout() {
-        //TODO:добавить blacklist
-        return null;
+        return ResponseEntity.ok(authService.logout());
     }
 }

@@ -1,5 +1,6 @@
 package com.backend.event_service.configuration;
 
+import com.backend.event_service.services.auth.BlackListService;
 import com.backend.event_service.services.jwt.JwtService;
 import com.backend.event_service.services.user.UserService;
 import jakarta.servlet.FilterChain;
@@ -24,6 +25,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private static  final String HEADER_NAME = "Authorization";
     private final JwtService jwtService;
     private final UserService userService;
+    private final BlackListService blackListService;
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -39,6 +41,9 @@ public class JwtFilter extends OncePerRequestFilter {
         var userLogin = jwtService.getUserLogin(jwt);
 
         if(userLogin!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
+            if(blackListService.isTokenBlacklisted(jwt)) {
+                filterChain.doFilter(request, response);
+            }
             UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userLogin);
             if(jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
