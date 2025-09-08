@@ -6,13 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@Table(name = "blacklist")
+@Entity
 @NoArgsConstructor
+@Table(name = "blacklist")
 public class Token {
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "blacklisted_gen")
+    @SequenceGenerator(name = "blacklisted_gen", sequenceName = "blacklisted_seq", allocationSize = 1)
     private Long id;
-    @Column(name = "payload")
-    private String payload;
+    @Column(name = "token", nullable = false, unique = true)
+    private String token;
 }

@@ -15,7 +15,7 @@
             <column name="id" type="bigint" >
                 <constraints primaryKey="true" primaryKeyName="pk_token_id"/>
             </column>
-            <column name="payload" type="varchar(256)">
+            <column name="token" type="VARCHAR(468)">
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>

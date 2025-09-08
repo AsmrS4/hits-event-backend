@@ -2,6 +2,8 @@ package com.backend.event_service.configuration;
 
 import com.backend.event_service.services.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -48,7 +50,8 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/api/v1/auth/sign-in").permitAll()
+                                .requestMatchers("/api/v1/auth/logout").authenticated()
+                                .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/api/v1/user/new/**").hasAuthority("DEAN")
                                 .requestMatchers("/api/v1/company/**").hasAuthority("DEAN")
                                 .requestMatchers("/api/v1/event/booking/**").hasAuthority("STUDENT")
@@ -71,7 +74,7 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userService.userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
+        //authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
@@ -79,6 +82,11 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)
             throws Exception {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public Logger logger() {
+        return LoggerFactory.getLogger(SecurityConfig.class);
     }
 
 }

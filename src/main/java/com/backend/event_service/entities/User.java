@@ -17,16 +17,16 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+@Entity
 @NoArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
+    @SequenceGenerator(name = "user_gen", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
     @Column(name = "chatId", nullable = true, unique = true)
-    private Long chatId;
+    private Long chatId = null;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
