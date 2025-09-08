@@ -42,10 +42,14 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         return null;
     }
 
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     public User getByLogin(String login) {
         return userRepository.findByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
     }
 
     @Override

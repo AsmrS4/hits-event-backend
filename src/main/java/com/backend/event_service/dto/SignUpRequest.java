@@ -15,4 +15,6 @@ public class SignUpRequest {
     @Size(min = 5, max = 100, message = "User login length must be in range of 5 and 100 symbols")
     @NotBlank(message = "Login is required")
     private String login;
+
+    private Long chatId;
 }
