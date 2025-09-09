@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService{
     private final UserRepository userRepository;
-    private final String login = SecurityContextHolder.getContext().getAuthentication().getName();
+
     //TODO:доступен только админу
     @Override
     public List<UserDTO> getRegistrationList() {
@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     }
     @Override
     public UserDTO getProfile() {
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(login == null) {
+            throw new RuntimeException("Unauthorized");
+        }
         User user = userRepository.findByLogin(login)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
 
@@ -57,6 +61,10 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 
     @Override
     public UserDTO editProfile(UserEditDTO userEditDTO) {
+        String login = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(login == null) {
+            throw new RuntimeException("Unauthorized");
+        }
         User user = userRepository.findByLogin(login)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
 
@@ -86,6 +94,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         }
         user.setAccountStatus(AccountStatus.CONFIRMED);
         userRepository.save(user);
+        //TODO:сделать рассылку ТГ боту + выдать пароль
         return new RequestResponse(true, 200, "User's account was confirmed");
     }
 
@@ -98,6 +107,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         }
         user.setAccountStatus(AccountStatus.REJECTED);
         userRepository.save(user);
+        //TODO:сделать рассылку ТГ боту
         return new RequestResponse(true, 200, "User's account was rejected");
     }
 
