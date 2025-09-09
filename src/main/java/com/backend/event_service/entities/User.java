@@ -41,7 +41,6 @@ public class User implements UserDetails {
     private AccountStatus accountStatus = AccountStatus.PENDING;
     @Column(name = "createTime", nullable = false)
     private LocalDateTime createTime = LocalDateTime.now();
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

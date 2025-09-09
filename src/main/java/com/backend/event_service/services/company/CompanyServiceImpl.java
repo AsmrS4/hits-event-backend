@@ -4,7 +4,7 @@ import com.backend.event_service.dto.CompanyDTO;
 import com.backend.event_service.dto.CompanyRequest;
 import com.backend.event_service.dto.RequestResponse;
 import com.backend.event_service.entities.Company;
-import com.backend.event_service.repositories.company.CompanyRepository;
+import com.backend.event_service.repositories.CompanyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

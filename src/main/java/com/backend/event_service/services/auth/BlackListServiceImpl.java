@@ -1,12 +1,10 @@
 package com.backend.event_service.services.auth;
 
 import com.backend.event_service.entities.Token;
-import com.backend.event_service.repositories.auth.BlackListRepository;
+import com.backend.event_service.repositories.BlackListRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
