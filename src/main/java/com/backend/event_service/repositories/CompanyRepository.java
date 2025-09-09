@@ -1,4 +1,4 @@
-package com.backend.event_service.repositories.company;
+package com.backend.event_service.repositories;
 
 import com.backend.event_service.entities.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
