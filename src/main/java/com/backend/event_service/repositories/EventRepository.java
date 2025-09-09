@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Long> {
     @Modifying
-    @Query("SELECT e FROM Event e WHERE e.authorId := authorId")
+    @Query("SELECT e FROM Event e WHERE e.authorId = :authorId")
     List<Event> getEventsByAuthorId(@Param("authorId") Long authorId);
 }

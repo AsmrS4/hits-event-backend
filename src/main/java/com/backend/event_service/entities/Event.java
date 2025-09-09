@@ -27,6 +27,6 @@ public class Event {
     private Long authorId;
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
-    @Column(name = "createdAt", nullable = true)
+    @Column(name = "modifiedAt", nullable = true)
     private LocalDateTime modifiedAt;
 }
