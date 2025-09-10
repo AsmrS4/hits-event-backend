@@ -11,6 +11,7 @@ public class EventDTO {
     private String title;
     private String description;
     private String location;
+    private String companyName;
     private LocalDateTime date;
     private LocalDateTime deadline;
     private LocalDateTime createdAt;

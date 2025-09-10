@@ -23,6 +23,7 @@ public class EventServiceImpl implements EventService{
             dto.setTitle(event.getTitle());
             dto.setDescription(event.getDescription());
             dto.setLocation(event.getLocation());
+            dto.setCompanyName(event.getCompanyName());
             dto.setDate(event.getDate());
             dto.setDeadline(event.getDeadline());
             dto.setCreatedAt(event.getCreatedAt());
@@ -39,6 +40,7 @@ public class EventServiceImpl implements EventService{
         dto.setId(event.getId());
         dto.setTitle(event.getTitle());
         dto.setDescription(event.getDescription());
+        dto.setCompanyName(event.getCompanyName());
         dto.setLocation(event.getLocation());
         dto.setDate(event.getDate());
         dto.setDeadline(event.getDeadline());
