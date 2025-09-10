@@ -5,13 +5,18 @@ import com.backend.event_service.dto.RequestResponse;
 import com.backend.event_service.dto.SignInRequest;
 import com.backend.event_service.dto.SignUpRequest;
 import com.backend.event_service.entities.User;
+import com.backend.event_service.errors.AuthException;
+import com.backend.event_service.errors.BadRequestException;
 import com.backend.event_service.services.jwt.JwtService;
 import com.backend.event_service.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.security.sasl.AuthenticationException;
 
 @Service
 @RequiredArgsConstructor
@@ -23,13 +28,16 @@ public class AuthServiceImpl implements AuthService{
     @Override
     public AccessToken login(SignInRequest signInRequest) {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(signInRequest.getLogin());
-        if(!userDetails.isEnabled()) {
-            LOGGER.info("Account not confirmed or banned");
-            throw  new RuntimeException("Account not confirmed or banned");
+        if(userDetails==null) {
+            throw new UsernameNotFoundException("Login failed");
         }
         if(userDetails.getUsername().isEmpty() || !userDetails.getPassword().equals(signInRequest.getPassword())) {
             LOGGER.info("Login failed");
-            throw new RuntimeException("Login failed");
+            throw new BadRequestException("Login failed");
+        }
+        if(!userDetails.isEnabled()) {
+            LOGGER.info("Account not confirmed or banned");
+            throw new AuthException("Account not confirmed or banned");
         }
         LOGGER.info("its Ok");
         return jwtService.getAccessToken(userDetails);
@@ -40,7 +48,7 @@ public class AuthServiceImpl implements AuthService{
     public RequestResponse registerUser(SignUpRequest signUpRequest) {
         UserDetails userDetails = userService.userDetailsService().loadUserByUsername(signUpRequest.getLogin());
         if(!userDetails.getUsername().isEmpty()) {
-            throw new RuntimeException("User with this login already exists");
+            throw new BadRequestException("User with this login already exists");
         }
         User user = new User();
         user.setFirstName(signUpRequest.getFirstName());
@@ -58,11 +66,11 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public RequestResponse logout() {
+    public RequestResponse logout() throws AuthenticationException {
         var token = SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
         LOGGER.info(token);
         if(blackListService.isTokenBlacklisted(token)) {
-            throw new RuntimeException("Unauthorized");
+            throw new AuthException("Unauthorized");
         }
         blackListService.save(token);
         return new RequestResponse(true, 200, "Logout");

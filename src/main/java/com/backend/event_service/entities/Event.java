@@ -25,6 +25,8 @@ public class Event {
     private LocalDateTime deadline;
     @Column(name = "authorId", nullable = false)
     private Long authorId;
+    @Column(name = "companyName", nullable = false)
+    private String companyName;
     @Column(name = "createdAt", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
     @Column(name = "modifiedAt", nullable = true)

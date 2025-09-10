@@ -29,6 +29,9 @@
             <column name="author_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
+            <column name="company_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_at" type="datetime" defaultValueComputed="now()">
                 <constraints nullable="false"/>
             </column>

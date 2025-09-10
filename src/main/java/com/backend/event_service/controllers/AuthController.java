@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.security.sasl.AuthenticationException;
+
 @RestController
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
@@ -27,7 +29,7 @@ public class AuthController {
         return ResponseEntity.ok(authService.registerUser(request));
     }
     @PostMapping("/logout")
-    public ResponseEntity<RequestResponse> logout() {
+    public ResponseEntity<RequestResponse> logout() throws AuthenticationException {
         return ResponseEntity.ok(authService.logout());
     }
 }

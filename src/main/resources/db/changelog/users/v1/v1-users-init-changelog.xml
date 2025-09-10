@@ -14,5 +14,23 @@
             <column name="role" value="2"/>
             <column name="account_status" value="1"/>
         </insert>
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_user1"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="0"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="3"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_user2"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="1"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
