@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-    <include file="users/v1/v1-accumulate-users-changelog.xml" relativeToChangelogFile="true"/>
-    <include file="companies/v1/v1-accumulate-company-changelog.xml" relativeToChangelogFile="true"/>
-    <include file="events/v1/v1-accumulate-events-changelog.xml" relativeToChangelogFile="true"/>
+
+    <include file="v1-create-company-table.xml" relativeToChangelogFile="true"/>
+    <include file="v1-company-init.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

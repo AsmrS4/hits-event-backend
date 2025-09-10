@@ -1,4 +1,4 @@
-package com.backend.event_service.repositories.auth;
+package com.backend.event_service.repositories;
 
 import com.backend.event_service.entities.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
