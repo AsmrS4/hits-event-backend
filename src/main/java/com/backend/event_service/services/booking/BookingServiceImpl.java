@@ -2,7 +2,7 @@ package com.backend.event_service.services.booking;
 
 import com.backend.event_service.dto.BookingDTO;
 import com.backend.event_service.dto.RequestResponse;
-import com.backend.event_service.dto.UserGuestDTO;
+import com.backend.event_service.dto.user.UserGuestDTO;
 import com.backend.event_service.entities.Booking;
 import com.backend.event_service.entities.Event;
 import com.backend.event_service.errors.AuthException;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

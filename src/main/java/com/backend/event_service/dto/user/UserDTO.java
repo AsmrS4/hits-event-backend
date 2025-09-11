@@ -1,4 +1,4 @@
-package com.backend.event_service.dto;
+package com.backend.event_service.dto.user;
 
 import com.backend.event_service.enums.AccountStatus;
 import com.backend.event_service.enums.UserRole;

@@ -1,8 +1,9 @@
 package com.backend.event_service.controllers;
 
-import com.backend.event_service.dto.UserDTO;
-import com.backend.event_service.dto.UserEditDTO;
+import com.backend.event_service.dto.user.UserDTO;
+import com.backend.event_service.dto.user.UserEditDTO;
 import com.backend.event_service.services.user.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getProfile());
     }
     @PutMapping("/me")
-    public ResponseEntity<UserDTO> editProfile(@RequestBody UserEditDTO dto) {
+    public ResponseEntity<UserDTO> editProfile(@RequestBody @Valid UserEditDTO dto) {
         return ResponseEntity.ok(userService.editProfile(dto));
     }
     @GetMapping("/confirmation/list")

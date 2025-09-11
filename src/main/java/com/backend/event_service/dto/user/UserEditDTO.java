@@ -1,4 +1,4 @@
-package com.backend.event_service.dto;
+package com.backend.event_service.dto.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

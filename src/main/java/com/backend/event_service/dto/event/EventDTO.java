@@ -1,7 +1,6 @@
-package com.backend.event_service.dto;
+package com.backend.event_service.dto.event;
 
 import lombok.Data;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
