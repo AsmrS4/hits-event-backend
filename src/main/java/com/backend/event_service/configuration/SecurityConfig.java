@@ -52,7 +52,6 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/company/**").hasAuthority("DEAN")
                                 .requestMatchers("/api/v1/event/booking/**").hasAuthority("STUDENT")
                                 .requestMatchers("/api/v1/manage/event/**").hasAuthority("MANAGER")
-                                .requestMatchers("/api/v1/event/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(c->c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

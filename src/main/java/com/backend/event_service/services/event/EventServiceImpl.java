@@ -48,10 +48,4 @@ public class EventServiceImpl implements EventService{
         dto.setModifiedAt(event.getModifiedAt());
         return dto;
     }
-
-    //TODO:сделать реализацию через сущность Booking
-    @Override
-    public List<UserDTO> getEventGuests(Long eventId) {
-        return null;
-    }
 }

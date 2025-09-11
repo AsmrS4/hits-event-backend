@@ -18,9 +18,4 @@ public class EventController {
     public ResponseEntity<?> getEventDetails(@PathVariable Long id) {
         return ResponseEntity.ok(eventService.getEventDetails(id));
     }
-
-    @GetMapping("/{id}/guests")
-    public ResponseEntity<?> getEventGuestList(@PathVariable Long id) {
-        return ResponseEntity.ok(eventService.getEventGuests(id));
-    }
 }

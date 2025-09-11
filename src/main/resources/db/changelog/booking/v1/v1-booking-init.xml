@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="v1-001" author="Aymir">
+        <insert tableName="booking">
+            <column name="id" value="1"/>
+            <column name="event_id" value="1000000"/>
+            <column name="user_login" value="test_user2"/>
+        </insert>
+        <insert tableName="booking">
+            <column name="id" value="2"/>
+            <column name="event_id" value="1000001"/>
+            <column name="user_login" value="test_user2"/>
+        </insert>
+        <insert tableName="booking">
+            <column name="id" value="3"/>
+            <column name="event_id" value="1000002"/>
+            <column name="user_login" value="test_user2"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

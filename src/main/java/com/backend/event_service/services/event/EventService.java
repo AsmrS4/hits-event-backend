@@ -8,5 +8,4 @@ import java.util.List;
 public interface EventService {
     List<EventDTO> getEvents();
     EventDTO getEventDetails(Long eventId);
-    List<UserDTO> getEventGuests(Long eventId);
 }
