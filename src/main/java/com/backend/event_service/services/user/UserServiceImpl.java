@@ -1,11 +1,11 @@
 package com.backend.event_service.services.user;
 
 import com.backend.event_service.dto.RequestResponse;
-import com.backend.event_service.dto.UserDTO;
-import com.backend.event_service.dto.UserEditDTO;
+import com.backend.event_service.dto.user.UserDTO;
+import com.backend.event_service.dto.user.UserEditDTO;
 import com.backend.event_service.entities.User;
 import com.backend.event_service.enums.AccountStatus;
-import com.backend.event_service.repositories.user.UserRepository;
+import com.backend.event_service.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

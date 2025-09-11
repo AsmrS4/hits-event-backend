@@ -5,4 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
     <include file="users/v1/v1-accumulate-users-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="companies/v1/v1-accumulate-company-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="events/v1/v1-accumulate-events-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="booking/v1/v1-accumulate-booking-changelog.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

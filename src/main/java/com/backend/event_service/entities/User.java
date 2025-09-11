@@ -27,6 +27,8 @@ public class User implements UserDetails {
     private Long id;
     @Column(name = "chatId", nullable = true, unique = true)
     private Long chatId = null;
+    @Column(name = "companyName")
+    private String companyName = null;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
@@ -41,7 +43,6 @@ public class User implements UserDetails {
     private AccountStatus accountStatus = AccountStatus.PENDING;
     @Column(name = "createTime", nullable = false)
     private LocalDateTime createTime = LocalDateTime.now();
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

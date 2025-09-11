@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="v1-001" author="Aymir">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="booking"/>
+            </not>
+        </preConditions>
+        <createTable tableName="booking">
+            <column name="id" type="bigint" >
+                <constraints primaryKey="true" primaryKeyName="pk_booking_id"/>
+            </column>
+            <column name="event_id" type="bigint" />
+            <column name="user_login" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

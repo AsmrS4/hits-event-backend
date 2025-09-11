@@ -1,9 +1,10 @@
 package com.backend.event_service.handler;
 
+import com.backend.event_service.errors.AuthException;
 import com.backend.event_service.errors.BadRequestException;
-import com.backend.event_service.errors.LoginFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,19 +28,20 @@ public class ApplicationExceptionHandler {
     public ResponseEntity<String> handleException(Exception ex) {
         return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-    @ExceptionHandler(LoginFailedException.class)
-    ResponseEntity<Map<String, Object>>  handleLoginFailedException(LoginFailedException ex) {
-        Map<String, Object> errors = new HashMap<>();
-        errors.put("status: ", HttpStatus.BAD_REQUEST.value());
-        errors.put("error: ", ex.getMessage());
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    }
     @ExceptionHandler(BadRequestException.class)
     ResponseEntity<Map<String, Object>>  handleBadRequestException(BadRequestException ex) {
         Map<String, Object> errors = new HashMap<>();
         errors.put("status: ", HttpStatus.BAD_REQUEST.value());
         errors.put("error: ", ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthException.class)
+    ResponseEntity<Map<String, Object>>  handleAuthException(AuthException ex) {
+        Map<String, Object> errors = new HashMap<>();
+        errors.put("status: ", HttpStatus.UNAUTHORIZED.value());
+        errors.put("error: ", ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

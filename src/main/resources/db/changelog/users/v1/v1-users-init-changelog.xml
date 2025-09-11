@@ -6,12 +6,59 @@
 
     <changeSet id="v1-002" author="Aymir">
         <insert tableName="users">
-            <column name="id" value="1"/>
+            <column name="id" value="1000000"/>
             <column name="first_name" value="Иван"/>
             <column name="last_name" value="Петрович"/>
             <column name="login" value="dean_admin"/>
             <column name="password" value="password123"/>
             <column name="role" value="2"/>
+            <column name="account_status" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000001"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_user1"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="0"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000002"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_user2"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000003"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_user3"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000004"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_manager1"/>
+            <column name="company_name" value="Kreosoft"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="1"/>
+            <column name="account_status" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000005"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_manager2"/>
+            <column name="company_name" value="ЦФТ"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="1"/>
             <column name="account_status" value="1"/>
         </insert>
     </changeSet>
