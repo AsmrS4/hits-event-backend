@@ -27,6 +27,8 @@ public class User implements UserDetails {
     private Long id;
     @Column(name = "chatId", nullable = true, unique = true)
     private Long chatId = null;
+    @Column(name = "companyName")
+    private String companyName = null;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
