@@ -1,6 +1,8 @@
 package com.backend.event_service.services.user;
 
 import com.backend.event_service.dto.*;
+import com.backend.event_service.dto.user.UserDTO;
+import com.backend.event_service.dto.user.UserEditDTO;
 import com.backend.event_service.entities.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
