@@ -7,4 +7,5 @@
     <include file="users/v1/v1-accumulate-users-changelog.xml" relativeToChangelogFile="true"/>
     <include file="companies/v1/v1-accumulate-company-changelog.xml" relativeToChangelogFile="true"/>
     <include file="events/v1/v1-accumulate-events-changelog.xml" relativeToChangelogFile="true"/>
+    <include file="booking/v1/v1-accumulate-booking-changelog.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
