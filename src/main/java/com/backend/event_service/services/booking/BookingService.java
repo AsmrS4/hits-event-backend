@@ -1,9 +1,6 @@
 package com.backend.event_service.services.booking;
 
-import com.backend.event_service.dto.BookingDTO;
-import com.backend.event_service.dto.RequestResponse;
-import com.backend.event_service.dto.UserDTO;
-import com.backend.event_service.dto.UserGuestDTO;
+import com.backend.event_service.dto.*;
 
 import java.util.List;
 

@@ -2,7 +2,6 @@ package com.backend.event_service.services.booking;
 
 import com.backend.event_service.dto.BookingDTO;
 import com.backend.event_service.dto.RequestResponse;
-import com.backend.event_service.dto.UserDTO;
 import com.backend.event_service.dto.UserGuestDTO;
 import com.backend.event_service.entities.Booking;
 import com.backend.event_service.entities.Event;
@@ -10,18 +9,13 @@ import com.backend.event_service.errors.AuthException;
 import com.backend.event_service.errors.BadRequestException;
 import com.backend.event_service.repositories.BookingRepository;
 import com.backend.event_service.repositories.EventRepository;
-import com.backend.event_service.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +23,6 @@ import java.util.stream.Collectors;
 public class BookingServiceImpl implements BookingService{
     private final BookingRepository bookingRepository;
     private final EventRepository eventRepository;
-    private final Logger logger = LoggerFactory.getLogger(BookingServiceImpl.class);
     @Override
     public RequestResponse bookEvent(Long eventId) {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -76,16 +69,7 @@ public class BookingServiceImpl implements BookingService{
         if(login == null) {
             throw new AuthException("");
         }
-        List<Booking> bookingList = bookingRepository.getUsersBooking(login);
-        return bookingList.stream().map(booking -> {
-            BookingDTO dto = new BookingDTO();
-            dto.setId(booking.getId());
-            dto.setUserLogin(booking.getUserLogin());
-            dto.setEventId(booking.getEventId());
-            dto.setCreatedAt(booking.getCreatedAt());
-
-            return dto;
-        }).collect(Collectors.toList());
+        return bookingRepository.getUsersBooking(login);
     }
 
 
