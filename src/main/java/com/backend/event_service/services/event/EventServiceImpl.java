@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class EventServiceImpl implements EventService{
     private final EventRepository eventRepository;
     @Override
     public List<EventDTO> getEvents() {
-        return eventRepository.findAll().stream().map(event -> {
+        return eventRepository.getActiveEvents(LocalDateTime.now()).stream().map(event -> {
             EventDTO dto = new EventDTO();
             dto.setId(event.getId());
             dto.setTitle(event.getTitle());

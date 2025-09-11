@@ -19,7 +19,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,8 +36,12 @@ public class BookingServiceImpl implements BookingService{
         if(login == null) {
             throw new AuthException("");
         }
-        if(!eventRepository.existsById(eventId)) {
-            throw new UsernameNotFoundException("Event not found");
+        Event event = eventRepository.findById(eventId).orElseThrow(()-> new UsernameNotFoundException("Event not found"));
+        if(event.getDeadline()!=null && event.getDeadline().isBefore(LocalDateTime.now())) {
+            throw new BadRequestException("You can't book event after deadline");
+        }
+        if(event.getDate().isBefore(LocalDateTime.now())) {
+            throw new BadRequestException("This event has passed");
         }
         List<Booking> bookingList = bookingRepository.findAllBooking(eventId, login);
         if(!bookingList.isEmpty()) {
