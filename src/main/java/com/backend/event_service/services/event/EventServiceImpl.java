@@ -7,6 +7,7 @@ import com.backend.event_service.dto.event.EventEditDTO;
 import com.backend.event_service.entities.Event;
 import com.backend.event_service.entities.User;
 import com.backend.event_service.enums.UserRole;
+import com.backend.event_service.errors.BadRequestException;
 import com.backend.event_service.repositories.EventRepository;
 import com.backend.event_service.repositories.UserRepository;
 import jakarta.security.auth.message.AuthException;
@@ -62,30 +63,55 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public RequestResponse createEvent() {
-        /*String userLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+    public RequestResponse createEvent(EventCreateDTO dto) {
+        String userLogin = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByLogin(userLogin)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
-
         Event event = new Event();
         event.setTitle(dto.getTitle());
         event.setDescription(dto.getDescription());
         event.setLocation(dto.getLocation());
         event.setDate(dto.getDate());
         event.setDeadline(dto.getDeadline());
+        event.setAuthorId(user.getId());
         event.setCompanyName(user.getCompanyName());
-        eventRepository.save(event);*/
-        log.info("Saved");
-        return new RequestResponse(true, 200, "New event added to database");
+        eventRepository.save(event);
+
+        return new RequestResponse(true, 200, userLogin);
     }
 
     @Override
     public RequestResponse editEvent(Long eventId, EventEditDTO dto) {
-        return null;
+        String userLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByLogin(userLogin)
+                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(()-> new UsernameNotFoundException("Event not found"));
+        if(!event.getAuthorId().equals(user.getId())) {
+            throw new BadRequestException("Event could be edited only by author");
+        }
+        event.setTitle(dto.getTitle());
+        event.setDescription(dto.getDescription());
+        event.setLocation(dto.getLocation());
+        event.setDate(dto.getDate());
+        event.setDeadline(dto.getDeadline());
+        event.setModifiedAt(LocalDateTime.now());
+        eventRepository.save(event);
+
+        return new RequestResponse(true, 200, "Event was updated");
     }
 
     @Override
     public RequestResponse deleteEvent(Long eventId) {
-        return null;
+        String userLogin = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByLogin(userLogin)
+                .orElseThrow(()-> new UsernameNotFoundException("User not found"));
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(()-> new UsernameNotFoundException("Event not found"));
+        if(!event.getAuthorId().equals(user.getId())) {
+            throw new BadRequestException("Event could be deleted only by author");
+        }
+        eventRepository.delete(event);
+        return new RequestResponse(true, 200, "Event was deleted");
     }
 }

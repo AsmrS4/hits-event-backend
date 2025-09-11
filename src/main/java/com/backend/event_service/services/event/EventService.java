@@ -11,7 +11,7 @@ import java.util.List;
 public interface EventService {
     List<EventDTO> getEvents();
     EventDTO getEventDetails(Long eventId);
-    RequestResponse createEvent();
+    RequestResponse createEvent(EventCreateDTO dto);
     RequestResponse editEvent(Long eventId, EventEditDTO dto);
     RequestResponse deleteEvent(Long eventId);
 }

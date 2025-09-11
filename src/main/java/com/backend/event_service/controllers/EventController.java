@@ -24,15 +24,15 @@ public class EventController {
         return ResponseEntity.ok(eventService.getEventDetails(id));
     }
     @PostMapping("/manage")
-    public ResponseEntity<?> createEvent() {
-        return ResponseEntity.ok(eventService.createEvent());
+    public ResponseEntity<?> createEvent(@RequestBody EventCreateDTO dto) {
+        return ResponseEntity.ok(eventService.createEvent(dto));
     }
     @PutMapping("/manage/{eventId}")
-    public ResponseEntity<?> editEvent(@PathVariable Long eventId, @RequestBody @Valid EventEditDTO dto) {
+    public ResponseEntity<?> editEvent(@PathVariable Long eventId, @RequestBody EventEditDTO dto) {
         return ResponseEntity.ok(eventService.editEvent(eventId, dto));
     }
     @DeleteMapping("/manage/{eventId}")
-    public ResponseEntity<RequestResponse> deleteEvent(@PathVariable @Valid Long eventId) {
+    public ResponseEntity<RequestResponse> deleteEvent(@PathVariable Long eventId) {
         return ResponseEntity.ok(eventService.deleteEvent(eventId));
     }
 }
