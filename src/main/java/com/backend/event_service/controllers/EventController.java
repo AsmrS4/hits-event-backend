@@ -1,6 +1,11 @@
 package com.backend.event_service.controllers;
 
+import com.backend.event_service.dto.RequestResponse;
+import com.backend.event_service.dto.event.EventCreateDTO;
+import com.backend.event_service.dto.event.EventEditDTO;
 import com.backend.event_service.services.event.EventService;
+import jakarta.security.auth.message.AuthException;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,5 +22,17 @@ public class EventController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getEventDetails(@PathVariable Long id) {
         return ResponseEntity.ok(eventService.getEventDetails(id));
+    }
+    @PostMapping("/manage")
+    public ResponseEntity<?> createEvent() {
+        return ResponseEntity.ok(eventService.createEvent());
+    }
+    @PutMapping("/manage/{eventId}")
+    public ResponseEntity<?> editEvent(@PathVariable Long eventId, @RequestBody @Valid EventEditDTO dto) {
+        return ResponseEntity.ok(eventService.editEvent(eventId, dto));
+    }
+    @DeleteMapping("/manage/{eventId}")
+    public ResponseEntity<RequestResponse> deleteEvent(@PathVariable @Valid Long eventId) {
+        return ResponseEntity.ok(eventService.deleteEvent(eventId));
     }
 }
