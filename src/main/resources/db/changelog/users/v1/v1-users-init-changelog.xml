@@ -17,7 +17,7 @@
         <insert tableName="users">
             <column name="id" value="1000001"/>
             <column name="first_name" value="Иван"/>
-            <column name="last_name" value="Петрович"/>
+            <column name="last_name" value="Петрович1"/>
             <column name="login" value="test_user1"/>
             <column name="password" value="password123"/>
             <column name="role" value="0"/>
@@ -26,7 +26,7 @@
         <insert tableName="users">
             <column name="id" value="1000002"/>
             <column name="first_name" value="Иван"/>
-            <column name="last_name" value="Петрович"/>
+            <column name="last_name" value="Петрович2"/>
             <column name="login" value="test_user2"/>
             <column name="password" value="password123"/>
             <column name="role" value="0"/>
@@ -35,7 +35,7 @@
         <insert tableName="users">
             <column name="id" value="1000003"/>
             <column name="first_name" value="Иван"/>
-            <column name="last_name" value="Петрович"/>
+            <column name="last_name" value="Петрович3"/>
             <column name="login" value="test_user3"/>
             <column name="password" value="password123"/>
             <column name="role" value="0"/>
@@ -43,6 +43,24 @@
         </insert>
         <insert tableName="users">
             <column name="id" value="1000004"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович4"/>
+            <column name="login" value="test_user4"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="0"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000005"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович5"/>
+            <column name="login" value="test_user5"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="0"/>
+            <column name="account_status" value="0"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000006"/>
             <column name="first_name" value="Иван"/>
             <column name="last_name" value="Петрович"/>
             <column name="login" value="test_manager1"/>
@@ -52,7 +70,7 @@
             <column name="account_status" value="1"/>
         </insert>
         <insert tableName="users">
-            <column name="id" value="1000005"/>
+            <column name="id" value="1000007"/>
             <column name="first_name" value="Иван"/>
             <column name="last_name" value="Петрович"/>
             <column name="login" value="test_manager2"/>
@@ -60,6 +78,16 @@
             <column name="password" value="password123"/>
             <column name="role" value="1"/>
             <column name="account_status" value="1"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="1000008"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Петрович"/>
+            <column name="login" value="test_manager3"/>
+            <column name="company_name" value="ЦФТ"/>
+            <column name="password" value="password123"/>
+            <column name="role" value="1"/>
+            <column name="account_status" value="0"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

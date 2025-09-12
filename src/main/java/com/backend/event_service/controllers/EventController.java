@@ -4,8 +4,6 @@ import com.backend.event_service.dto.RequestResponse;
 import com.backend.event_service.dto.event.EventCreateDTO;
 import com.backend.event_service.dto.event.EventEditDTO;
 import com.backend.event_service.services.event.EventService;
-import jakarta.security.auth.message.AuthException;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

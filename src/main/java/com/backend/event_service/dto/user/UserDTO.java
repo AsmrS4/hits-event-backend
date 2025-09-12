@@ -2,8 +2,6 @@ package com.backend.event_service.dto.user;
 
 import com.backend.event_service.enums.AccountStatus;
 import com.backend.event_service.enums.UserRole;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 import java.time.LocalDateTime;
