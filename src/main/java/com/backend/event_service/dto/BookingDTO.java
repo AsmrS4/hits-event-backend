@@ -1,6 +1,5 @@
 package com.backend.event_service.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

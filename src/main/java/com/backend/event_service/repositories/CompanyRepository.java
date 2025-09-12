@@ -3,7 +3,6 @@ package com.backend.event_service.repositories;
 import com.backend.event_service.entities.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {

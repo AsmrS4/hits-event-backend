@@ -55,7 +55,9 @@ public class AuthServiceImpl implements AuthService{
         user.setLastName(signUpRequest.getLastName());
         user.setLogin(signUpRequest.getLogin());
         user.setChatId(signUpRequest.getChatId());
-        user.setPassword(null);
+        user.setRole(signUpRequest.getRole());
+        user.setCompanyName(signUpRequest.getCompanyName());
+        user.setPassword(signUpRequest.getPassword());
         userService.save(user);
 
         return new RequestResponse(
