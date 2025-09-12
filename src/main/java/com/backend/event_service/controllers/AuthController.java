@@ -5,7 +5,6 @@ import com.backend.event_service.dto.RequestResponse;
 import com.backend.event_service.dto.SignInRequest;
 import com.backend.event_service.dto.SignUpRequest;
 import com.backend.event_service.services.auth.AuthService;
-import com.backend.event_service.services.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

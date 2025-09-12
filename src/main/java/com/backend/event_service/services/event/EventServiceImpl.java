@@ -6,15 +6,12 @@ import com.backend.event_service.dto.event.EventDTO;
 import com.backend.event_service.dto.event.EventEditDTO;
 import com.backend.event_service.entities.Event;
 import com.backend.event_service.entities.User;
-import com.backend.event_service.enums.UserRole;
 import com.backend.event_service.errors.BadRequestException;
 import com.backend.event_service.repositories.EventRepository;
 import com.backend.event_service.repositories.UserRepository;
-import jakarta.security.auth.message.AuthException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
