@@ -94,7 +94,6 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         }
         user.setAccountStatus(AccountStatus.CONFIRMED);
         userRepository.save(user);
-        //TODO:сделать рассылку ТГ боту + выдать пароль
         return new RequestResponse(true, 200, "User's account was confirmed");
     }
 
@@ -102,12 +101,10 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     public RequestResponse rejectUserAccount(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(()-> new UsernameNotFoundException("User not found"));
-        if(user.getAccountStatus().equals(AccountStatus.REJECTED)) {
-            throw new RuntimeException("User's account already rejected");
+        if(user.getAccountStatus().equals(AccountStatus.CONFIRMED)) {
+            throw new RuntimeException("User's account already confirmed");
         }
-        user.setAccountStatus(AccountStatus.REJECTED);
-        userRepository.save(user);
-        //TODO:сделать рассылку ТГ боту
+        userRepository.delete(user);
         return new RequestResponse(true, 200, "User's account was rejected");
     }
 
